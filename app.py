@@ -4,10 +4,10 @@ import matplotlib.pyplot as plt
 
 # Configurações do Streamlit
 st.title("Visualização de Ações com Yahoo Finance")
-st.sidebar.header("Parâmetros")
 
 # Entrada do usuário
-ticker = st.sidebar.text_input("Insira o ticker da ação:", "AAPL").upper()
+opcoes = ['TSLA', 'AAPL', 'NVDA']
+ticker = st.selectbox("Escolha uma opção:", opcoes)
 
 # Obtenção dos dados
 try:
