@@ -5,6 +5,7 @@ import requests
 import pandas as pd
 
 # Configurações do Streamlit
+st.set_page_config(page_title="Valores de fechamento de ações")
 st.title("Valores de fechamento de ações")
 
 # Entrada do usuário
