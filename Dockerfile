@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN pip install tensorflow joblib scikit-learn fastapi uvicorn 
+RUN pip install tensorflow joblib scikit-learn fastapi uvicorn prometheus_client psutil
 
 EXPOSE 8000
 

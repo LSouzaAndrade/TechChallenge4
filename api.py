@@ -1,22 +1,29 @@
+from prometheus_client import Counter, Histogram, Gauge, generate_latest, CONTENT_TYPE_LATEST
+from prometheus_client.exposition import generate_latest
 from fastapi import FastAPI, Request, Response
 from pydantic import BaseModel, conlist
 from typing import List, Dict
 import numpy as np
 import tensorflow as tf
 import joblib
+import psutil
+import time
 import os
 
-from prometheus_client import Counter, Histogram, generate_latest, CONTENT_TYPE_LATEST
-from prometheus_client.exposition import generate_latest
-import time
-
 REQUEST_LATENCY = Histogram('http_request_latency_seconds', 'Tempo de resposta da requisição', ['method', 'endpoint'])
+CPU_USAGE = Gauge('cpu_usage_percent', 'Uso de CPU do servidor (%)')
+MEMORY_USAGE = Gauge('memory_usage_percent', 'Uso de memória do servidor (%)')
+
 current_dir = os.path.dirname(__file__)
 app = FastAPI()
 
 class StockData(BaseModel):
     ticker: str
     closing_prices: conlist(float, min_length=30, max_length=30)
+
+def update_resource_metrics():
+    CPU_USAGE.set(psutil.cpu_percent(interval=0.1))
+    MEMORY_USAGE.set(psutil.virtual_memory().percent)
 
 @app.post("/")
 async def model_predict(data: StockData, request: Request) -> Dict[str, float]:
@@ -40,4 +47,5 @@ async def model_predict(data: StockData, request: Request) -> Dict[str, float]:
 
 @app.get("/metrics")
 async def metrics():
+    update_resource_metrics()
     return Response(content=generate_latest(), media_type=CONTENT_TYPE_LATEST)
