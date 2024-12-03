@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from pydantic import BaseModel
+from pydantic import BaseModel, conlist
 from typing import List, Dict
 import numpy as np
 import tensorflow as tf
@@ -11,7 +11,7 @@ app = FastAPI()
 
 class StockData(BaseModel):
     ticker: str
-    closing_prices: List[float]
+    closing_prices: conlist(float, min_length=30, max_length=30)
 
 @app.post("/")
 async def model_predict(data: StockData) -> Dict[str, float]:
