@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN pip install --no-cache-dir -r api_requirements.txt
+RUN pip install tensorflow joblib sklearn fastapi uvicorn 
 
 EXPOSE 8000
 
