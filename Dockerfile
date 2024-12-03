@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN pip install tensorflow joblib sklearn fastapi uvicorn 
+RUN pip install tensorflow joblib scikit-learn fastapi uvicorn 
 
 EXPOSE 8000
 
