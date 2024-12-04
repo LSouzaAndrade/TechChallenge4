@@ -47,6 +47,7 @@ Para utilização da API para os modelos gerados neste projeto, se fazem necess�
 ## 🔧 Instalação
 Todas dependências necessárias para reprodução do projeto contido neste repositório foram testadas com a versão 3.12.7 do Python. \
 É recomendado que sejam utilizadas as versões de dependências incluídas no arquivo [requirements.txt](requirements.txt), a fim de evitar erros originados por incompatibilidade de versões.\
+
 Para isso, navegue até o diretório do projeto, e no terminal execute a seguinte sequência de comandos:
 
 ```bash
@@ -73,7 +74,7 @@ docker run -d -p 8000:8000 --name nome-container nome-imagem:1.0
 ```
 
 ## ⚙️ Execução
-Com o ambiente virtual ativo, e dependências necessárias instaladas, é necessario que sejam abertos em terminais distintos os servidores para a API do modelo, e para a aplicação.
+Em caso de execução direta, com ambiente virtual ativo, utilize:
 
 ### Uvicorn
 ```bash
@@ -81,6 +82,9 @@ Com o ambiente virtual ativo, e dependências necessárias instaladas, é necess
 # (Por padrão, o Uvicorn irá rodar na porta 8000)
 uvicorn api:app
 ```
+
+Em caso de uso de Docker:
+
 ### Docker
 ```bash
 # Inicie o container com a imagem Docker criada:
