@@ -25,8 +25,10 @@ A estrutura de pastas e arquivos do projeto se encontra disposta da seguinte man
     └── scaler_TSLA.pkl                 # Scaler serializado para modelo LSTM (Tesla)
 ├── api.py                              # API para requests aos modelos treinados
 ├── app.py                              # Aplicação Streamlit
+├── Dockerfile                          # Arquivo de configuração da imagem Docker
 ├── LICENSE.txt                         # Licença MIT vigente sob este repositório
 ├── notebook.ipynb                      # Notebook utilizado para treinamento dos modelos
+├── prometheus.yaml                     # Arquivo de configuração do Prometheus
 ├── README.md                           # Documentação do projeto
 └── requirements.txt                    # Dependências externas utilizadas
 ```
